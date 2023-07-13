@@ -1,0 +1,120 @@
+#i have include comments to make it easy to understand for everybody
+from tkinter import *
+import random
+a = [1,2,3]              #list 
+def click1():
+    j = val2.get()       #to input points of user 
+    k = val3.get()       #to input points of Computer
+    com = 0
+    you = 0
+    scr3.configure(image=photo4)
+    r = random.choice(a)
+    if (r == 1):
+        val.set("Its a DRAW")
+        scr2.configure(image=photo7)
+    elif (r == 2):
+        val.set("YOU LOOSE")
+        scr2.configure(image=photo8)
+        com += 1
+    elif (r == 3):
+        val.set("YOU WIN")
+        scr2.configure(image=photo9)
+        you +=1
+    val2.set(j+you)
+    val3.set(k+com)
+def click2():
+    j = val2.get()
+    k = val3.get()
+    com = 0
+    you = 0
+    scr3.configure(image=photo5)
+    r = random.choice(a)
+    if (r == 2):
+        val.set("Its a DRAW")
+        scr2.configure(image=photo8)
+    elif (r == 3):
+        val.set("YOU LOOSE")
+        scr2.configure(image=photo9)
+        com += 1
+    elif (r == 1):
+        val.set("YOU WIN")
+        scr2.configure(image=photo7)
+        you += 1
+    val2.set(j+you)
+    val3.set(k+com)
+def click3():
+    j = val2.get()
+    k = val3.get()
+    com = 0
+    you = 0
+    scr3.configure(image=photo6)
+    r = random.choice(a)
+    if (r == 3):
+        val.set("Its a DRAW")
+        scr2.configure(image=photo9)
+    elif (r == 1):
+        val.set("YOU LOOSE")
+        com += 1
+        scr2.configure(image=photo7)
+    elif (r == 2):
+        val.set("YOU WIN")
+        scr2.configure(image=photo8)
+        you += 1
+    val2.set(j+you)
+    val3.set(k+com)
+w = Tk()
+w.minsize(920,500)
+w.config(bg="lightblue")
+w.title("Rock Paper Scissor")
+
+#importing image
+photo = PhotoImage(file=r'paper20.png')
+photo2 = PhotoImage(file=r'rock20.png')
+photo3 = PhotoImage(file=r'scissor20.png')
+photo5 = PhotoImage(file=r'paper00.png')
+photo4 = PhotoImage(file=r'rock00.png')
+photo6 = PhotoImage(file=r'scissor00.png')
+photo8 = PhotoImage(file=r'papercom.png')
+photo7 = PhotoImage(file=r'rockcom.png')
+photo9 = PhotoImage(file=r'scissorcom.png')
+logo = PhotoImage(file=r'rpslogo5.png')
+
+#Defining Variables
+val = StringVar()
+val2 = IntVar()
+val3 = IntVar()
+val4 = StringVar()
+
+#logo
+Label(w,image=logo,bg="lightblue").grid(rowspan=4,columnspan=4)
+
+#Sceen1 to display reasult
+scr = Entry(w,textvariable=val,font="Lucia 20 bold",fg='coral4',justify='center', borderwidth=0, relief="raised",bg="lightblue").grid(row=5,column=2,padx=4,pady=6)
+
+#Labels
+Label(w,text="COMPUTER",font="Lucia 20 bold", fg="Red",bg="lightblue").grid(row = 5 ,column = 3,padx=6,pady=15)
+Label(w,text="YOU",font="Lucia 20 bold", fg="Green",bg="lightblue").grid(row = 5 ,column = 1,padx=6,pady=15)
+
+#Screen 2 and 3 to display user Choice and Computer Choice
+scr2 = Label(w,image=photo7,bg="lightblue")
+scr2.grid(row = 7 ,column = 3,padx=6,pady=15)
+scr3 = Label(w,image=photo4,bg="lightblue")
+scr3.grid(row = 7 ,column = 1,padx=6,pady=15)
+
+#Screen 4 and 5 to display points
+scr4 = Entry(w,textvariable=val2,font="Lucia 20 bold",justify='center',  borderwidth=0,bg="lightblue").grid(row = 8 , column = 1,padx=16,pady=15)
+Label(w,text="SCORES",font="Lucia 20 bold", fg="Gray",bg="lightblue").grid(row = 7 ,column = 2,padx=6,pady=15)
+scr5 = Entry(w,textvariable=val3,font="Lucia 20 bold",justify='center',  borderwidth=0,bg="lightblue").grid(row = 8 ,column = 3,padx=16,pady=15)
+
+#Instruction
+Label(w,text="Tap on Buttons BELOW to START the Game",font="Lucia 10 bold",fg="Green",bg="lightblue").grid(row=8,columnspan=4)
+
+#Buttons
+n1 = Button(w,text="ROCK",image = photo2,command=click1,font=("Lucia", 35, "bold"),fg="Gray",bg="lightblue", borderwidth=0).grid(row=9,column=1,padx=2,pady=2)
+n2 = Button(w,text="PAPER",image = photo,command=click2,font="Lucia 35 bold",fg="Gray",bg="lightblue", borderwidth=0).grid(row=9,column=2,padx=2,pady=2)
+n3 = Button(w,text="SCISSOR",image = photo3,command=click3,font="Lucia 35 bold",fg="Gray",bg="lightblue", borderwidth=0).grid(row=9,column=3,padx=2,pady=2)
+
+#Credit
+Label(w,text="Created by Prince Chauhan",font="Lucia 10 bold",fg="Green",bg="lightblue").grid(row = 10 ,column = 2,pady=10,padx=10)
+
+w.mainloop()
